@@ -1,0 +1,12 @@
+{
+  "name": "unistore",
+  "version": "1.0.0",
+  "description": "Ecommerce Store Assignment- Uniblox",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "FIFA",
+  "license": "ISC"
+}
