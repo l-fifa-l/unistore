@@ -1,10 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
 
 function Product() {
   return (
     <>
       <div className="lg:w-1/4 md:w-1/2 p-4 w-full ">
-        <div className="relative block border-2 border-sky-500">
+        <div className="relative block border border-sky-500">
           <img
             className="object-contain w-full h-full"
             src="https://www.hyperui.dev/photos/toy-1.jpeg"
@@ -25,7 +26,9 @@ function Product() {
 
             <div className="card-actions justify-end">
               <button className="btn btn-primary">Add to Cart</button>
-              <button className="btn btn-primary">Buy Now</button>
+              <Link href="/cart">
+                <button className="btn btn-primary">Buy Now</button>
+              </Link>
             </div>
           </div>
         </div>

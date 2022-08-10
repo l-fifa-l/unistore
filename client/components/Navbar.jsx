@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 function Navbar() {
   return (
@@ -6,7 +7,9 @@ function Navbar() {
       <div className="navbar bg-base-100 pl-5 pr-8">
         {/* Logo of Site */}
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">Uni-Store</a>
+          <Link href="/">
+            <a className="btn btn-ghost normal-case text-xl">Uni-Store</a>
+          </Link>
         </div>
         {/* Cart and Profile */}
         <div className="flex-none">
@@ -40,9 +43,11 @@ function Navbar() {
                 <span className="font-bold text-lg">8 Items</span>
                 <span className="text-info">Subtotal: $999</span>
                 <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
-                    View cart
-                  </button>
+                  <Link href="/cart">
+                    <button className="btn btn-primary btn-block">
+                      View cart
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -62,9 +67,11 @@ function Navbar() {
                 <a className="justify-between">Profile</a>
               </li>
               {/* Show if User is Admin */}
-              <li>
-                <a>Admin</a>
-              </li>
+              <Link href="/admin">
+                <li>
+                  <a>Admin</a>
+                </li>
+              </Link>
             </ul>
           </div>
         </div>
