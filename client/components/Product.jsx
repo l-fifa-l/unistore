@@ -1,10 +1,12 @@
 import React from 'react';
-import Link from 'next/link';
-
-function Product({ product }) {
-  const addToCart = (product) => {};
-  const buyNow = () => {};
-
+import { useDispatch } from 'react-redux';
+import { increment } from '../features/cart/cartSlice';
+const Product = ({ product }) => {
+  const dispatch = useDispatch();
+  const addToCart = () => {
+    console.log(product);
+    dispatch(increment(product));
+  };
   return (
     <>
       <div className="lg:w-1/4 md:w-1/2 p-4 w-full ">
@@ -28,20 +30,15 @@ function Product({ product }) {
             </div>
 
             <div className="card-actions justify-end">
-              <button className="btn btn-primary" onClick={addToCart}>
-                Add to Cart
+              <button className="btn btn-primary w-full" onClick={addToCart}>
+                Add Cart
               </button>
-              <Link href="/cart">
-                <button className="btn btn-primary" onClick={buyNow}>
-                  Buy Now
-                </button>
-              </Link>
             </div>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Product;

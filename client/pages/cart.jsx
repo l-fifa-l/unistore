@@ -3,8 +3,12 @@ import Link from 'next/link';
 import Layout from '../components/layout';
 import CartProduct from '../components/CartProduct';
 import CartPay from '../components/CartPay';
+import { useSelector } from 'react-redux';
 
 function Cart() {
+  const count = useSelector((state) => state.cart.total);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const itemsInCart = useSelector((state) => state.cart.itemsInCart);
   return (
     <Layout>
       <div className="h-screen">
@@ -16,11 +20,14 @@ function Cart() {
                   <div className="col-span-2 p-5">
                     <h1 className="text-xl font-medium ">Shopping Cart</h1>
                     <div className="divide-y divide-slate-700">
-                      <CartProduct />
-                      <CartProduct />
-                      <CartProduct />
-                      <CartProduct />
-                      <CartProduct />
+                      {itemsInCart.map((item) => (
+                        <CartProduct
+                          key={item._id}
+                          title={item.title}
+                          price={item.price}
+                          thumbnail={item.thumbnail}
+                        />
+                      ))}
                     </div>
                     <div className="flex justify-between items-center mt-6 pt-6 border-t">
                       <div className="flex items-center">
@@ -37,7 +44,7 @@ function Cart() {
                           Subtotal:
                         </span>
                         <span className="text-lg font-bold text-gray-800 ">
-                          $24.90
+                          ${totalPrice}
                         </span>
                       </div>
                     </div>
