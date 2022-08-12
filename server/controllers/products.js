@@ -2,7 +2,7 @@ const Product = require('../models/product');
 const asyncHandler = require('express-async-handler');
 const { data } = require('../utils/data');
 
-// insert products into the database
+// insert products into the database from the data array
 const postProducts = asyncHandler(async (req, res) => {
   const products = await Product.insertMany(data.products);
   res.status(201).json({

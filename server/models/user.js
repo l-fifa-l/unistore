@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+
+// ─── USER MODEL ───────────────────────────────────────────────────────────────
+
 const userSchema = mongoose.Schema(
   {
     username: {

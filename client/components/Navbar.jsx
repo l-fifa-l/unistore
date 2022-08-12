@@ -1,3 +1,5 @@
+// Navbar Component
+
 import React from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
@@ -34,6 +36,7 @@ function Navbar() {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
+                {/* show badge if cart has more than 0 items */}
                 {count > 0 ? (
                   <span className="badge badge-sm indicator-item">{count}</span>
                 ) : (
@@ -70,10 +73,7 @@ function Navbar() {
               tabIndex="0"
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a className="justify-between">Profile</a>
-              </li>
-              {/* Show if User is Admin */}
+              {/* Link to Admin */}
               <Link href="/admin">
                 <li>
                   <a>Admin</a>

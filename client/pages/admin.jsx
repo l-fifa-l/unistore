@@ -1,8 +1,11 @@
+// Admin page
+
 import React from 'react';
 import Layout from '../components/layout';
 import MetricCard from '../components/MetricCard';
+import axios from 'axios';
 
-function admin() {
+function admin({ adminApi }) {
   return (
     <Layout>
       <section>
@@ -15,79 +18,34 @@ function admin() {
         <div className="flex flex-wrap bg-slate-100 mb-6">
           {/*Total Purchased Amount Metric Card*/}
           <MetricCard
-            icon={'gg-dollar'}
             name={'Total Amount Purchased'}
-            value={'$24.90'}
+            value={adminApi.totalAmount}
           />
 
           {/*Total Discount Amount Metric Card*/}
           <MetricCard
             icon={'gg-dollar'}
             name={'Total Discount Amount'}
-            value={'$ 2.49'}
+            value={adminApi.totalDiscountAmount}
           />
 
           {/*Total discount Codes used Metric Card*/}
           <MetricCard
             icon={'gg-dollar'}
             name={'Total discount Codes'}
-            value={1}
+            value={adminApi.discountCoupons.length}
           />
 
           {/*Total Number of Items purchased Metric Card*/}
           <MetricCard
             icon={'gg-dollar'}
             name={'Total Items purchased'}
-            value={1}
+            value={adminApi.totalItemPurchased}
           />
         </div>
         {/* Metric Card End */}
       </section>
       <section className=" justify-evenly sm:flex-1 gap-x-8 gap-y-4 ">
-        {/* List of Items purchased */}
-        <div>
-          <h2 className="text-2xl font-semibold pl-6 pb-3 leading-tight">
-            Items purchased
-          </h2>
-
-          <div className="overflow-x-auto">
-            <table className="table w-full">
-              {/* <!-- head --> */}
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* <!-- row 1 --> */}
-                <tr>
-                  <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Blue</td>
-                </tr>
-                {/* <!-- row 2 --> */}
-                <tr>
-                  <th>2</th>
-                  <td>Hart Hagerty</td>
-                  <td>Desktop Support Technician</td>
-                  <td>Purple</td>
-                </tr>
-                {/* <!-- row 3 --> */}
-                <tr>
-                  <th>3</th>
-                  <td>Brice Swyre</td>
-                  <td>Tax Accountant</td>
-                  <td>Red</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
         {/* Discount Codes List */}
         <div>
           <h2 className="text-2xl pl-6 pb-3 font-semibold leading-tight">
@@ -100,33 +58,17 @@ function admin() {
               <thead>
                 <tr>
                   <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>Code</th>
                 </tr>
               </thead>
               <tbody>
                 {/* <!-- row 1 --> */}
-                <tr>
-                  <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Blue</td>
-                </tr>
-                {/* <!-- row 2 --> */}
-                <tr>
-                  <th>2</th>
-                  <td>Hart Hagerty</td>
-                  <td>Desktop Support Technician</td>
-                  <td>Purple</td>
-                </tr>
-                {/* <!-- row 3 --> */}
-                <tr>
-                  <th>3</th>
-                  <td>Brice Swyre</td>
-                  <td>Tax Accountant</td>
-                  <td>Red</td>
-                </tr>
+                {adminApi.discountCoupons.map((discountCode, index) => (
+                  <tr key={index || 0}>
+                    <th>{index + 1}</th>
+                    <td>{discountCode}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -134,6 +76,15 @@ function admin() {
       </section>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const { data } = await axios.get(`http://localhost:5000/api/admin`);
+  return {
+    props: {
+      adminApi: data[0],
+    },
+  };
 }
 
 export default admin;

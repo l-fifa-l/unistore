@@ -1,3 +1,7 @@
+// Display product in cart
+// Total price of cart
+// Quantity of cart
+
 import React from 'react';
 
 function CartProduct({ title, price, thumbnail }) {

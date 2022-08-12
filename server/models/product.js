@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+
+// ─── PRODUCT MODEL ───────────────────────────────────────────────────────────────
 const productSchema = mongoose.Schema(
   {
     title: { type: String, required: true },

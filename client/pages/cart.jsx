@@ -1,3 +1,5 @@
+// cart page
+
 import React from 'react';
 import Link from 'next/link';
 import Layout from '../components/layout';
@@ -6,7 +8,6 @@ import CartPay from '../components/CartPay';
 import { useSelector } from 'react-redux';
 
 function Cart() {
-  const count = useSelector((state) => state.cart.total);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const itemsInCart = useSelector((state) => state.cart.itemsInCart);
   return (

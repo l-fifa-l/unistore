@@ -1,10 +1,11 @@
+// Product Component
+
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { increment } from '../features/cart/cartSlice';
 const Product = ({ product }) => {
   const dispatch = useDispatch();
   const addToCart = () => {
-    console.log(product);
     dispatch(increment(product));
   };
   return (

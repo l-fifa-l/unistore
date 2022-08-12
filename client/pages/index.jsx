@@ -1,3 +1,6 @@
+// Home page
+// list All Products
+
 import Layout from '../components/layout';
 import Product from '../components/product';
 import axios from 'axios';
