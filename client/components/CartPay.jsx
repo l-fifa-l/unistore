@@ -119,7 +119,11 @@ export default function CartPay() {
               page.
             </p>
             <div className="modal-action">
-              <label htmlFor="order-placed-modal" className="btn">
+              <label
+                onClick={() => window.location.reload(false)}
+                htmlFor="order-placed-modal"
+                className="btn"
+              >
                 OK
               </label>
             </div>
